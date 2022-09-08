@@ -1,23 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import { Toaster } from "react-hot-toast";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./authentication/Login/Login";
+import SignUp from "./authentication/Register/SignUp";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Users from "./pages/Dashboard/forAdmin/Users/Users";
+import Home from "./pages/home/Home";
+import Address from "./pages/Profile/Address/Address";
+import Education from "./pages/Profile/Education/Education";
+import MyProfile from "./pages/Profile/MyProfile/MyProfile";
+import Profile from "./pages/Profile/Profile";
+import Footer from "./shared/Footer/Footer";
+import Navbar from "./shared/Header/Nabvar";
+import NotFound from "./shared/NotFound/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App bg-[#1B2640]">
+      <Navbar />
+      <Toaster></Toaster>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/profile"
+          element={
+            // <RequireAuth>
+            <Profile />
+            // </RequireAuth>
+          }
         >
-          Learn React
-        </a>
-      </header>
+          <Route index element={<MyProfile />}></Route>
+          <Route path="address" element={<Address />}></Route>
+          <Route path="education" element={<Education />}></Route>
+        </Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signUp" element={<SignUp />}></Route>
+        <Route
+          path="/dashboard"
+          element={
+            // <RequireAuth>
+            <Dashboard />
+            // </RequireAuth>
+          }
+        >
+          <Route
+            path="users"
+            element={
+              // <RequireAdmin>
+              <Users />
+              // </RequireAdmin>
+            }
+          ></Route>
+        </Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+      <Footer />
     </div>
   );
 }
