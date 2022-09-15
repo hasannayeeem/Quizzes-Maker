@@ -20,7 +20,7 @@ const MyProfile = () => {
         //     name: data.name,
         //     phone: data.phone
         // }
-        fetch(`https://neighbour-home--server.herokuapp.com/user?email=${user?.email}`, {
+        fetch(`http://localhost:5000/api/v1/user?email=${user.email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

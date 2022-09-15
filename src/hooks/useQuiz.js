@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react"
 
-const useEngineer = (engineerId) =>{
-    const [engineer, setEngineer] = useState({});
-    const [enLoading, setEnLoading] = useState(true)
+const useQuiz = ({quizId}) =>{
+    const [quiz, setQuiz] = useState(null);
+    const [qzLoading, setQzLoading] = useState(true)
+    console.log(quizId);
     useEffect( () =>{
-        fetch(`https://neighbour-home--server.herokuapp.com/user/${engineerId}`)
+        fetch(`http://localhost:5000/api/v1/get-single-quiz/${quizId}`)
         .then(res => res.json())
         .then(data => {
-            setEngineer(data)
-            setEnLoading(false)
+            setQuiz(data)
+            setQzLoading(false)
         });   
-    },[engineer, engineerId, enLoading, setEngineer]);
-    return [engineer, setEngineer];
+    },[quiz, quizId, qzLoading, setQuiz]);
+    return [quiz, qzLoading, setQuiz];
 }
-export default useEngineer;
+export default useQuiz;

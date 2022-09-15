@@ -37,7 +37,7 @@ const Login = () => {
 	useEffect(() => {
 		if (token.report === 'inserted' || token.report === 'exist') {
 			navigate('/')
-			toast.success('Plz Fillup This Form!', { id: "social_login" })
+			// toast.success('Plz Fillup This Form!', { id: "social_login" })
 		} else if (token.report === 'dataExist') {
 			navigate(from, { replace: true });
 			toast.success('Login Successfully!', { id: "social_login" })

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -22,6 +22,7 @@ const SignUp = () => {
         emailLoading,
         emailError,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const [token] = useToken(googleUser || emailUser)
@@ -29,6 +30,14 @@ const SignUp = () => {
     let location = useLocation();
 	let from = location.state?.from?.pathname || "/";
 	
+    const handleRegister = async (data) => {
+        console.log(data);
+        const email = data.email
+        const password = data.password
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({ displayName: data.name });
+        reset()
+    }
 
     useEffect(() => {
         if (token.report === 'inserted') {
@@ -58,13 +67,7 @@ const SignUp = () => {
         toast.error('Failed To Login', {id: 'failed to login'})
     }
 
-    const handleRegister = (data) => {
-        console.log(data);
-        const email = data.email
-        const password = data.password
-        createUserWithEmailAndPassword(email, password)
-        reset()
-    }
+
 
     return (
         <section className='mt-[129px] md:mt-[80px]'>

@@ -19,7 +19,9 @@ import { signOut } from 'firebase/auth'
 // import useRole from '../../hooks/useRole'
 // import NotificationModal from './Notification/NotificationModal'
 import axios from 'axios';
-import logo from '../../assests/images/logo.png';
+import logo from '../../assests/images/qm-logo-3.png';
+import useRole from '../../hooks/useRole'
+import Loading from '../Loading/Loading'
 
 const Navbar = () => {
 	const [colorChange, setColorchange] = useState(false)
@@ -29,7 +31,11 @@ const Navbar = () => {
 	const [NewNotificationsCount, setNewNotificationsCount] = useState(0)
 	const [user, loading] = useAuthState(auth)
 	const navigate = useNavigate();
-	const location = useLocation().pathname
+	const location = useLocation().pathname;
+	let [role, roleLoading] = useRole(user);
+	if(loading){
+		<Loading />
+	}
 	// const [darkMode, setDarkMode] = useContext(DarkModeContext)
 	// //     console.log(role);
 	// const setNotificationZero = () => {
@@ -95,7 +101,7 @@ const Navbar = () => {
 				{/* phone navbar */}
 				<div className="flex flex-wrap items-center justify-between py-6 sm:px-2 px-5">
 					<label
-						for="dashboard-drower"
+						htmlFor="dashboard-drower"
 						tabIndex="1"
 						className={`${location.includes('dashboard') ? 'block' : 'hidden'
 							} md:hidden text-white cursor-pointer`}
@@ -110,7 +116,7 @@ const Navbar = () => {
 							href="/"
 							className="text-white ml-2 font-semibold  text-3xl"
 						>
-							Quizzes Maker
+							{role === 'admin' ? 'Quizzes Master' : 'Quiz Master'}
 						</a>
 					</div>
 
@@ -125,7 +131,7 @@ const Navbar = () => {
 						<div className="relative md:hidden">
 							<label
 								// onClick={() => setNotificationZero()}
-								for="notificattonModal"
+								htmlFor="notificattonModal"
 								className="inline-block text-white md:px-2 font-semibold cursor-pointer"
 							>
 								<IoMdNotificationsOutline className="text-2xl"></IoMdNotificationsOutline>
@@ -159,7 +165,7 @@ const Navbar = () => {
 
 					<ul
 						onClick={navBtnHndle}
-						className={`mobile-manu flex md:hidden flex-col text-center z-10   left-0 w-full bg-teal-100  absolute  py-4 duration-500 ${toggle ? ' opacity-100  top-20' : ' top-[-350px] opacity-0'
+						className={`mobile-manu flex md:hidden text-secondary flex-col text-center z-10   left-0 w-full bg-p  absolute  py-4 duration-500 ${toggle ? ' opacity-100  top-20' : ' top-[-350px] opacity-0'
 							}`}
 					>
 						<NavLink
@@ -211,8 +217,8 @@ const Navbar = () => {
 							</div>
 						</div>
 						<Link
-							className="inline-block w-44 mx-auto font-semibold px-4 py-2 hover:bg-white hover:text-teal-900  bg-teal-800 text-white  border-white rounded"
-							to={'/'}
+							className="inline-block w-44 mx-auto font-semibold px-4 py-2 hover:bg-primary hover:text-white  bg-secondary text-white  border-white rounded"
+							to={'/quizzes'}
 						>
 							Start Quiz
 						</Link>
@@ -241,7 +247,7 @@ const Navbar = () => {
 								
 								<li className="md:ml-2.5 md:hidden lg:block">
 									<Link
-										to={'/blogs'}
+										to={'/quizzes'}
 										className="py-2 inline-block md:text-white md:px-2 font-semibold"
 										href="#"
 									>
@@ -286,7 +292,7 @@ const Navbar = () => {
 									<li className="md:ml-2.5 md:mr-2.5 flex items-center relative">
 										<label
 											// onClick={() => setNotificationZero()}
-											for="notificattonModal"
+											htmlFor="notificattonModal"
 											className="inline-block md:text-white md:px-2 font-semibold cursor-pointer"
 										>
 											<IoMdNotificationsOutline className="text-2xl"></IoMdNotificationsOutline>
@@ -308,6 +314,7 @@ const Navbar = () => {
 								}
 
 
+									<div className="relative">
 								<Link to={'/profile'} className="avatar mx-2">
 									<div className="w-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
 										<img
@@ -316,6 +323,8 @@ const Navbar = () => {
 										/>
 									</div>
 								</Link>
+									{/* <div class="badge badge-secondary absolute top-0 left-8 py-0 px-1 m-0">pro</div> */}
+									</div>
 
 								{user ? (
 									<li className="md:ml-6 mt-3 md:mt-0">

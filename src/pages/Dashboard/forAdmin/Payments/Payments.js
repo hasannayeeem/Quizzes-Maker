@@ -1,8 +1,8 @@
 import React from 'react';
 import useUsers from '../../../../hooks/useUsers';
-import UserRow from './UserRow';
+import PaymentRow from './PaymentRow';
 
-const Users = () => {
+const Payments = () => {
     const [users] = useUsers();
     return (
         <div className='lg:px-4 px-2 pb-5'>
@@ -22,21 +22,21 @@ const Users = () => {
                                 status
                             </th>
                             <th scope='col' className='py-2 sm:py-3 text-center'>
-                                Action
+                                transaction ID
                             </th>
                             <th scope='col' className='py-2 sm:py-3 text-center'>
-                                info
+                                action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index)=><UserRow
+                            users.map((user, index)=><PaymentRow
                                 index={index}
                                 key={user._id}
                                 user={user}
                                 // refetch={refetch}
-                                ></UserRow>)
+                                ></PaymentRow>)
                         }
                     </tbody>
                 </table>
@@ -45,4 +45,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default Payments;

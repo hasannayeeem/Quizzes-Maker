@@ -3,12 +3,13 @@ import { Outlet, Link } from "react-router-dom";
 // import { DarkModeContext } from "../../../App";
 import userSvg from "../../assests/icons/user-dashbord.svg";
 import reviewSvg from "../../assests/icons/review-dashbord.svg";
-import { MdDashboardCustomize, MdVerifiedUser, RiUserSettingsFill } from "react-icons/md";
+import { MdDashboardCustomize, MdOutlinePayment, MdQuiz, MdVerifiedUser, RiUserSettingsFill } from "react-icons/md";
 import { FaUsersCog } from "react-icons/fa";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
 import useRole from "../../hooks/useRole";
+import { GoSettings } from "react-icons/go";
 
 const Dashboard = () => {
 //   const [darkMode] = useContext(DarkModeContext);
@@ -22,7 +23,7 @@ const Dashboard = () => {
   return (
     <div
       style={{ fontFamily: "'Rajdhani', sans-serif" }}
-      className="mt-[129px] md:mt-[80px] lg:mt-[80px]"
+      className="lg:mt-[80px] md:mt-[80px] mt-[80px]"
     >
       <div className="drawer drawer-mobile mt-[64px]">
         <input
@@ -35,6 +36,7 @@ const Dashboard = () => {
             Dashboard
           </h3>
           {/* <!-- Page content here --> */}
+
           <Outlet />
         </div>
         <div className="drawer-side sm:z-0">
@@ -111,7 +113,35 @@ const Dashboard = () => {
                   }`}
                   to={"/dashboard/addQuiz"}
                 >
-                  <FaUsersCog /> Add Quiz
+                  <MdQuiz /> Add Quiz
+                </Link>
+              </li>
+            )}
+            {role === "admin" && (
+              <li>
+                <Link
+                  className={` shadow-lg my-1 font-bold ${
+                    1<0
+                      ? "bg-teal-400 hover:bg-teal-600 hover:text-gray-300 text-gray-600 "
+                      : " text-gray-200 hover:bg-teal-600"
+                  }`}
+                  to={"/dashboard/manageQuizzes"}
+                >
+                  <GoSettings /> Manage Quizzes
+                </Link>
+              </li>
+            )}
+            {role === "admin" && (
+              <li>
+                <Link
+                  className={` shadow-lg my-1 font-bold ${
+                    1<0
+                      ? "bg-teal-400 hover:bg-teal-600 hover:text-gray-300 text-gray-600 "
+                      : " text-gray-200 hover:bg-teal-600"
+                  }`}
+                  to={"/dashboard/paymentLists"}
+                >
+                  <MdOutlinePayment /> Payments list
                 </Link>
               </li>
             )}
@@ -127,6 +157,36 @@ const Dashboard = () => {
               >
                 <img className="w-4" src={reviewSvg} alt="book svg" /> Add a
                 Review
+              </Link>
+            </li>
+            }
+            {role !== "admin" &&
+              <li>
+              <Link
+                className={` shadow-lg my-1 font-bold ${
+                    1<0
+                    ? "bg-teal-400 hover:bg-teal-600 hover:text-gray-300 text-gray-600 "
+                    : " text-gray-200 hover:bg-teal-600"
+                }`}
+                to={"/dashboard/myQuizzes"}
+              >
+                <img className="w-4" src={reviewSvg} alt="book svg" /> My
+                Quizzes
+              </Link>
+            </li>
+            }
+            {role !== "admin" &&
+              <li>
+              <Link
+                className={` shadow-lg my-1 font-bold ${
+                    1<0
+                    ? "bg-teal-400 hover:bg-teal-600 hover:text-gray-300 text-gray-600 "
+                    : " text-gray-200 hover:bg-teal-600"
+                }`}
+                to={"/dashboard/myPayments"}
+              >
+                <img className="w-4" src={reviewSvg} alt="book svg" /> My
+                Payments
               </Link>
             </li>
             }
