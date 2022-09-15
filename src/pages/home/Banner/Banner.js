@@ -17,7 +17,7 @@ const Banner = () => {
 							Expand Your General Knowledge Lorem ipsum dolor sit amet consectetur as adipisicing elit. Laborum debitis fuga rem mollitia recusandae aperiam beatae nisi ullam ipsa fugit alias maiores quidem commodi at, asperiores laboriosam rerum aspernatur.
 						</p>
 						<a
-							href='#quizzes'
+							href='/quizzes'
 							className='px-8 py-3 hover:bg-primary bg-[#ef13bc] hover:text-white  transition text-white rounded inline-block mt-4 sm:mt-8 font-semibold'
 						>
 							start a quiz

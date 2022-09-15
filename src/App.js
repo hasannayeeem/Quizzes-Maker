@@ -1,6 +1,8 @@
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import RequireAuth from "./authentication/auth/RequireAuth";
+import RequireAdmin from "./authentication/auth/RequireAdmin";
 import Login from "./authentication/Login/Login";
 import SignUp from "./authentication/Register/SignUp";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -33,9 +35,9 @@ function App() {
         <Route
           path="/profile"
           element={
-            // <RequireAuth>
+            <RequireAuth>
             <Profile />
-            // </RequireAuth>
+            </RequireAuth>
           }
         >
           <Route index element={<MyProfile />}></Route>
@@ -44,65 +46,65 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signUp" element={<SignUp />}></Route>
-        <Route path="/quizzes" element={<Quizzes />}></Route>
+        <Route path="/quizzes" element={<RequireAuth><Quizzes /></RequireAuth>}></Route>
         <Route
             path="/user/:userId"
             element={
-              // <RequireAdmin>
+              <RequireAdmin>
               <UserDetails />
-              // </RequireAdmin>
+              </RequireAdmin>
             }
           ></Route>
-        <Route path="/startQuiz/:quizId" element={<TakeQuiz />}></Route>
-        <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/startQuiz/:quizId" element={<RequireAuth><TakeQuiz /></RequireAuth>}></Route>
+        <Route path="/payment" element={<RequireAuth><Payment /></RequireAuth>}></Route>
         <Route
           path="/dashboard"
           element={
-            // <RequireAuth>
+            <RequireAuth>
             <Dashboard />
-            // </RequireAuth>
+            </RequireAuth>
           }
         >
           <Route index element={<DashboardHome />}></Route>
           <Route
             path="users"
             element={
-              // <RequireAdmin>
+              <RequireAdmin>
               <Users />
-              // </RequireAdmin>
+              </RequireAdmin>
             }
           ></Route>
          
           <Route
             path="addQuiz"
             element={
-              // <RequireAdmin>
+              <RequireAdmin>
               <AddQuiz />
-              // </RequireAdmin>
+              </RequireAdmin>
             }
           ></Route>
           <Route
             path="manageQuizzes"
             element={
-              // <RequireAdmin>
+              <RequireAdmin>
               <ManageQuizzes />
-              // </RequireAdmin>
+              </RequireAdmin>
             }
           ></Route>
           <Route
             path="quizDetails/:quizId"
             element={
-              // <RequireAdmin>
+              <RequireAdmin>
               <QuizDetails />
-              // </RequireAdmin>
+             </RequireAdmin>
             }
           ></Route>
           <Route
             path="paymentLists"
             element={
-              // <RequireAdmin>
+              <RequireAdmin>
               <Payments />
-              // </RequireAdmin>
+              </RequireAdmin>
             }
           ></Route>
         </Route>

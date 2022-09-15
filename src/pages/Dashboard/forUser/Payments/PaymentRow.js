@@ -2,8 +2,8 @@ import React from 'react';
 
 const PaymentRow = () => {
     return (
-        <div>
-            
+        <div className='mt-48 text-secondary'>
+            Coming Soon....
         </div>
     );
 };

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PaymentRow = ({index, user}) => {
-    const { _id, email, name, role, isPaid, transactionId } = user;
+const PaymentRow = ({index, user: payment}) => {
+    const { _id, email, name, role, isPaid, transactionId } = payment;
     return (
         <tr className="bg-gray-800 border-gray-700 odd:bg-gray-800 even:bg-gray-700">
       <th
@@ -26,7 +26,7 @@ const PaymentRow = ({index, user}) => {
         <div className="flex items-center justify-center">
         <Link
           className="btn btn-xs btn-primary duration-200"
-          to={`/user/${user._id}`}
+          to={`/user/${payment._id}`}
         >
           refund
           
