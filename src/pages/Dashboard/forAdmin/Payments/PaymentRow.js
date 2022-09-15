@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PaymentRow = ({index, user: payment}) => {
+const PaymentRow = ({index, payment}) => {
     const { _id, email, name, role, isPaid, transactionId } = payment;
     return (
         <tr className="bg-gray-800 border-gray-700 odd:bg-gray-800 even:bg-gray-700">

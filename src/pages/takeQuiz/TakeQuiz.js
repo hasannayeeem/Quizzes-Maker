@@ -241,7 +241,7 @@ const TakeQuiz = () => {
             <BsFillPatchQuestionFill className="text-primary inline-block mx-4 w-4 h-4" />
             Total Question:
           </span>{" "}
-          <span className="mx-4">{singleQuiz?.allQTime}</span>
+          <span className="mx-4">{singleQuiz?.questions?.length}</span>
         </h1>
       </div>
     </div>

@@ -2,7 +2,12 @@ import React from 'react';
 import { MdOutlineQuiz } from 'react-icons/md';
 import { GiPayMoney } from "react-icons/gi";
 import usersSVG from '../../../../assests/images/user-profile-svgrepo-com.svg'
+import useQuizzes from '../../../../hooks/useQuizzes';
+import usePayments from '../../../../hooks/usePayments';
 const DashboardHome = () => {
+  const [quizzes] = useQuizzes();
+  const [payments] = usePayments();
+  
     return (
         <div>
                       <section className="flex lg:flex-row flex-col">
@@ -25,12 +30,12 @@ const DashboardHome = () => {
         {/* division 02 */}
         <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
           <div className="h-full flex items-center border-teal-600 border-4  p-4 rounded-lg hover:bg-slate-200 duration-1000">
-            <MdOutlineQuiz className="w-16 h-16 text-primary bg-gray-500 object-cover object-center flex-shrink-0 rounded-full mr-4" />
+            <MdOutlineQuiz className="text-6xl p-2 text-secondary bg-gray-300 hover:border-secondary border-primary border-2 object-cover object-center flex-shrink-0 rounded-full mr-4" />
               
             
             <div className="flex-grow">
               <h2 className="text-secondary title-font font-bold">Total Quiz</h2>
-              <p className="text-gray-500">10 quizzes</p>
+              <p className="text-gray-400">{quizzes?.allQuiz?.length} quizzes</p>
             </div>
           </div>
         </div>
@@ -38,11 +43,11 @@ const DashboardHome = () => {
         <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
           <div className="h-full flex items-center border-teal-600 border-4 p-4 rounded-lg hover:bg-slate-200 duration-1000">
             
-            <GiPayMoney className="w-16 h-16 text-primary bg-gray-500 object-cover object-center flex-shrink-0 rounded-full mr-4" />
+            <GiPayMoney className="text-6xl p-2 text-secondary bg-gray-300 hover:border-secondary border-primary border-2 object-cover object-center flex-shrink-0 rounded-full mr-4" />
             
             <div className="flex-grow">
               <h2 className="text-secondary title-font font-bold">Revenue</h2>
-              <p className="text-gray-500">800 Dollars</p>
+              <p className="text-gray-400">{payments?.allPay?.length * 107} Dollars</p>
             </div>
           </div>
         </div>

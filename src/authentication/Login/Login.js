@@ -67,7 +67,7 @@ const Login = () => {
 	}
 
 	return (
-		<section className=' md:mt-[80px] bg-purple'>
+		<section className=' md:mt-[80px] mt-[80px] bg-purple'>
             <PageTitle title='Login'></PageTitle>
 			<div className='bg-purple font-family-karla'>
 				<div className='w-full flex flex-wrap flex-row-reverse'>

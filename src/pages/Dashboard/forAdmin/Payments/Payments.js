@@ -32,7 +32,7 @@ const Payments = () => {
                     </thead>
                     <tbody>
                         {
-                            payments?.map((payment, index)=><PaymentRow
+                            payments?.allPay?.map((payment, index)=><PaymentRow
                                 index={index}
                                 key={payment._id}
                                 payment={payment}

@@ -70,7 +70,7 @@ const SignUp = () => {
 
 
     return (
-        <section className='mt-[129px] md:mt-[80px]'>
+        <section className='mt-[80px] md:mt-[80px]'>
             <PageTitle title='SignUp'></PageTitle>
             <div className="font-family-karla">
 
