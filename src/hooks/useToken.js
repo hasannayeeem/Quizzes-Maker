@@ -10,7 +10,7 @@ const useToken = user =>{
         const isPaid = false;
         const currentUser = {email: email, name: name, isPaid: false};
         if(email){
-            fetch(`http://localhost:5000/api/v1/user`, {
+            fetch(`https://quizzes-maker.herokuapp.com/api/v1/user`, {
                 method:'POST',
                 headers: {
                     'content-type': 'application/json'

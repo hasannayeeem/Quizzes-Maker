@@ -4,7 +4,7 @@ const useUser = (userId) =>{
     const [user, setUser] = useState({});
     const [userLoading, setUserLoading] = useState(true)
     useEffect( () =>{
-        fetch(`http://localhost:5000/api/v1/user/${userId}`)
+        fetch(`https://quizzes-maker.herokuapp.com/api/v1/user/${userId}`)
         .then(res => res.json())
         .then(data => {
             setUser(data)

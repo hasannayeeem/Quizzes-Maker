@@ -1,8 +1,14 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../../firebase.init';
+import useUserData from '../../../../hooks/useUserData';
 
 const PaymentRow = ({index, payment}) => {
-    const { _id, email, name, role, isPaid, transactionId } = payment;
+  const [user] = useAuthState(auth);
+    const { _id, email, name, role, transactionId } = payment;
+    const [userData] = useUserData(user);
+
     return (
         <tr className="bg-gray-800 border-gray-700 odd:bg-gray-800 even:bg-gray-700">
       <th
@@ -15,7 +21,7 @@ const PaymentRow = ({index, payment}) => {
       <td className="py-2 text-[11px] sm:text-[13px] sm:py-4">{email}</td>
       <td className="py-2 text-[13px] sm:py-4 text-center">
         <p className="btn btn-xs btn-ghost duration-200">
-          {isPaid ? "Premium" : "Free"}
+          {userData?.isPaid ? "Premium" : "Free"}
         </p>
       </td>
       <td className="py-2 text-[13px] sm:py-4 text-center">

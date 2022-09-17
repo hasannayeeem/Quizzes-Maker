@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 const usePayments = () =>{
     const [payments, setPayments] = useState([]);
     useEffect( () =>{
-        fetch('http://localhost:5000/api/v1/getAllPayment')
+        fetch('https://quizzes-maker.herokuapp.com/api/v1/getAllPayment')
         .then(res => res.json())
         .then(data => setPayments(data));
         

@@ -75,6 +75,14 @@ const TakeQuiz = () => {
     }
     setAns([]);
   };
+  const previousQuiz = () => {
+    if (index === 0) {
+      console.log("previous end");
+    } else {
+      setIndex(index - 1);
+    }
+    // setAns([]);
+  };
 
   const submitQuizHandler = (e) => {
     e.preventDefault();
@@ -88,11 +96,11 @@ const TakeQuiz = () => {
     };
     axios
       .post(
-        `http://localhost:5000/api/v1/submit-quiz/${singleQuiz?._id}`,
+        `https://quizzes-maker.herokuapp.com/api/v1/submit-quiz/${singleQuiz?._id}`,
         data
       )
       .then((data) => {
-        console.log(data.data);
+        // console.log(data.data);
         // event.target.value.reset()
         toast.success(
           `Dear ${userData?.name} Your Quiz Successfully submitted`
@@ -159,13 +167,13 @@ const TakeQuiz = () => {
         <div className="mb-8">
           <div
             onClick={() => isCorrectAns(questions[index]._id)}
-            className=" mr-auto block"
+            className="mr-2 "
           >
             <button
               onClick={() => {
                 nextQuiz();
               }}
-              className="btn btn-secondary text-right"
+              className="btn btn-secondary mb-2 block ml-auto text-right"
               disabled={!ans.length}
             >
               next
@@ -179,15 +187,20 @@ const TakeQuiz = () => {
   return (
     <div className="flex relative mx-width mx-auto justify-between">
       <div className="w-8/12 bg-p">
-        <div className="mt-[80px] w-[600px]">
+        <div className="mt-[80px] w-[600px] mx-auto">
           <h1 className="pt-10">{}</h1>
+          <div className="flex justify-between">      
+          <div className="flex ml-2 text-white justify-start text-4xl items-center space-x-2">
+             {questionCount}
+          </div>
           <div className="flex text-white justify-end mt-3 text-4xl items-center space-x-2">
             <span>
               <BsClockHistory className="text-secondary" />
             </span>
             <Countdown value={deadline} onFinish={onFinish} />
           </div>
-          {questionCount}
+          </div>
+          
           {Quiz}
           <div className="flex justify-between">
             <div
@@ -196,10 +209,10 @@ const TakeQuiz = () => {
             >
               <button
                 onClick={() => {
-                  nextQuiz();
+                  previousQuiz();
                 }}
                 className="btn btn-primary rounded-sm btn-sm"
-                disabled={!ans.length}
+                // disabled={!ans.length}
               >
                 previous
               </button>
@@ -213,7 +226,7 @@ const TakeQuiz = () => {
                   nextQuiz();
                 }}
                 className="btn btn-primary  rounded-sm btn-sm"
-                disabled={!ans.length}
+                // disabled={!ans.length}
               >
                 Skip
               </button>
@@ -223,7 +236,7 @@ const TakeQuiz = () => {
       </div>
       <div className="w-3/12 text-white min-h-screen fixed top-24 right-28 bg-p">
         <h1 className="text-center">
-          Congratulation for your attend this quiz
+          <span className="text-success">Congratulation!</span> for your attend this quiz
         </h1>
         <h1 className="flex justify-between my-4">
           <span className="mx-4">Quiz Name:</span>{" "}
@@ -242,6 +255,8 @@ const TakeQuiz = () => {
             Total Question:
           </span>{" "}
           <span className="mx-4">{singleQuiz?.questions?.length}</span>
+          <span className="mx-4">{ans}</span>
+          <span className="mx-4">{questions[index]?.answer}</span>
         </h1>
       </div>
     </div>

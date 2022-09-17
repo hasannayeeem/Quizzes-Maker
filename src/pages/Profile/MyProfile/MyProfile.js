@@ -20,7 +20,7 @@ const MyProfile = () => {
         //     name: data.name,
         //     phone: data.phone
         // }
-        fetch(`http://localhost:5000/api/v1/user?email=${user.email}`, {
+        fetch(`https://quizzes-maker.herokuapp.com/api/v1/user?email=${user.email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

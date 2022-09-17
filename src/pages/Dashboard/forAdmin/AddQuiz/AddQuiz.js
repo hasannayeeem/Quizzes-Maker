@@ -9,6 +9,8 @@ const AddQuiz = () => {
   const [picurl, setPicurl] = useState("");
   const [description, setDescription] = useState("");
   const [quizType, setQuizType] = useState("free");
+  const [timeType, setTimeType] = useState("quiz wise");
+  const [resultType, setResultType] = useState("per quiz");
   const [retake, setRetake] = useState("");
   const [time, setTime] = useState("");
   const [questionList, setQuestionList] = useState([]);
@@ -71,7 +73,7 @@ const AddQuiz = () => {
       answer,
     };
     setQuestionList([...questionList, questionDemo]);
-    const url = `http://localhost:5000/api/v1/createQuestionDemo`;
+    const url = `https://quizzes-maker.herokuapp.com/api/v1/createQuestionDemo`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -115,10 +117,12 @@ const AddQuiz = () => {
       image: picurl,
       description,
       quizType: quizType,
+      resultType: resultType,
+      timeType: timeType,
       retakeCount: retake,
       allQTime: time,
     };
-    const url = `http://localhost:5000/api/v1/createQuizDemo`;
+    const url = `https://quizzes-maker.herokuapp.com/api/v1/createQuizDemo`;
     fetch(url, {
       method: "POST",
       headers: {
@@ -143,7 +147,7 @@ const AddQuiz = () => {
         <div className="relative">
       <h1 className='text-xl font-semibold text-left ml-12 mb-4 text-secondary mt-4'>{questionForm ? 'Add Question' : 'Add Quiz'}</h1>
       <div className="hero bg-p w-1/2 ml-12 rounded-sm mb-12">
-        <div className="">
+        <div className="py-4">
           <form className="mt-2">
             {questionForm === false ? 
             (
@@ -176,15 +180,33 @@ const AddQuiz = () => {
                     onClick={uploadImageAndgetUrl}
                   />
                 </div>
-                <div className="">
+                <div className="input  input-bordered glass input-secondary w-full max-w-xs">
+                  
                   <select
                     value={quizType}
                     onChange={(e) => setQuizType(e.target.value)}
-                    className="input text-gray-300 input-bordered glass input-secondary w-full max-w-xs"
+                    className='mr-2 -mt-4'
                   >
                     <option value="free" className='bg-secondary py-1 text-gray-300 input-bordered glass input-secondary w-full max-w-xs'>Free</option>
                     <option value="paid" className='bg-secondary py-1 text-gray-300 input-bordered glass input-secondary w-full max-w-xs'>Paid</option>
                   </select>
+                  <select
+                    value={resultType}
+                    onChange={(e) => setResultType(e.target.value)}
+                    className='mr-2 -mt-4'
+                  >
+                    <option value="free" className='bg-secondary py-1 text-gray-300 input-bordered glass input-secondary w-full max-w-xs'>quiz wise</option>
+                    <option value="paid" className='bg-secondary py-1 text-gray-300 input-bordered glass input-secondary w-full max-w-xs'>Question wise</option>
+                  </select>
+                  <select
+                    value={timeType}
+                    onChange={(e) => setTimeType(e.target.value)}
+                    
+                  >
+                    <option value="free" className='bg-secondary py-1 text-gray-300 input-bordered glass input-secondary w-full max-w-xs'>per quiz</option>
+                    <option value="paid" className='bg-secondary py-1 text-gray-300 input-bordered glass input-secondary w-full max-w-xs'>per question</option>
+                  </select>
+                  <p className='text-xs mb-1 text-gray-300'>quiz^type     <span className='mx-8'>result^type</span>     time^type</p>
                 </div>
                 <div className="form-group">
                   <input

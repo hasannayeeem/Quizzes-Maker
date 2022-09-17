@@ -9,7 +9,7 @@ const useRole = (user) => {
 		if (user) {
 			axios
 				.get(
-					`http://localhost:5000/api/v1/singleUserByEmail/${user?.email}`
+					`https://quizzes-maker.herokuapp.com/api/v1/singleUserByEmail/${user?.email}`
 				)
 				.then(data => {
 					// console.log(data.data);

@@ -23,7 +23,7 @@ const CheckOutForm = ({userData}) => {
   }
   const premiumPrice = 107;
   useEffect(()=>{
-    const url = `http://localhost:5000/create-payment-intent`;
+    const url = `https://quizzes-maker.herokuapp.com/create-payment-intent`;
     fetch(url, {
       method: 'POST',
       headers: {
@@ -88,7 +88,7 @@ const CheckOutForm = ({userData}) => {
         amount: paymentIntent.amount,
       }
 
-      fetch(`http://localhost:5000/api/v1/createPayment`, {
+      fetch(`https://quizzes-maker.herokuapp.com/api/v1/createPayment`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

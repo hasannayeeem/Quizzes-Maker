@@ -26,7 +26,7 @@ const handleDelete = email => {
           }).then((willDelete) => {
             if (willDelete) {
         fetch(
-          `http://localhost:5000/api/v1/deleteMyQuizzes?email=${email}`,
+          `https://quizzes-maker.herokuapp.com/api/v1/deleteMyQuizzes?email=${email}`,
           {
             method: 'DELETE',
             headers: {
@@ -48,7 +48,7 @@ const handleDelete = email => {
       }})}
   const { isLoading, error, data: myQuizzes, refetch } = useQuery(["myQuizzes"], () =>
     fetch(
-      `http://localhost:5000/api/v1/get-my-quizzes?email=${email}`
+      `https://quizzes-maker.herokuapp.com/api/v1/get-my-quizzes?email=${email}`
     ).then((res) => res.json())
   );
 

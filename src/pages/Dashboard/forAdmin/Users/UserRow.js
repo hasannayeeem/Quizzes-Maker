@@ -18,7 +18,7 @@ const UserRow = ({ user, index }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/api/v1/user/${id}`, {
+        fetch(`https://quizzes-maker.herokuapp.com/api/v1/user/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const UserRow = ({ user, index }) => {
       
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/api/v1/user?email=${user.email}`, {
+        fetch(`https://quizzes-maker.herokuapp.com/api/v1/user?email=${user.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -61,7 +61,7 @@ const UserRow = ({ user, index }) => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            alert(`${name ? name : "this user"} Successfully made an admin`);
+            toast.success(`${name ? name : "this user"} Successfully made an admin`);
           });
       }
     });
@@ -88,11 +88,10 @@ const UserRow = ({ user, index }) => {
         if (result.isConfirmed) {
           axios
             .put(
-              `http://localhost:5000/api/v1/user?email=${user.email}`,
+              `https://quizzes-maker.herokuapp.com/api/v1/user?email=${user.email}`,
               userData
             )
             .then((data) => {
-              console.log(data.data);
               Swal.fire(
                 "Deleted!",
                 `${user.email} has been Deleted from admin.`,

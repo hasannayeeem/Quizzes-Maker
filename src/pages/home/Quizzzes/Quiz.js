@@ -15,8 +15,8 @@ const Quiz = ({quiz}) => {
           <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{quizName ? quizName :' ICT!' }</h2>
-          <p>{description}</p>
+          <h2 className="card-title">{quizName ? quizName?.slice(0, 20) :' ICT!' }...</h2>
+          <p>{description.slice(0, 40)}...</p>
           <p>{quiz.users.length} people took it</p>
           <div className="card-actions justify-center mt-2">
             <Link to={`${quizType === 'paid' && !userData?.isPaid ? '/payment' : `/startQuiz/${_id}`}`}><button className="btn btn-primary btn-sm mt-2">Take A Test</button></Link>

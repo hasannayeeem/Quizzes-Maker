@@ -5,7 +5,7 @@ const useQuiz = ({quizId}) =>{
     const [qzLoading, setQzLoading] = useState(true)
     console.log(quizId);
     useEffect( () =>{
-        fetch(`http://localhost:5000/api/v1/get-single-quiz/${quizId}`)
+        fetch(`https://quizzes-maker.herokuapp.com/api/v1/get-single-quiz/${quizId}`)
         .then(res => res.json())
         .then(data => {
             setQuiz(data)
