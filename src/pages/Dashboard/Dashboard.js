@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 // import { DarkModeContext } from "../../../App";
-import userSvg from "../../assests/icons/user-dashbord.svg";
-import reviewSvg from "../../assests/icons/review-dashbord.svg";
-import { MdDashboardCustomize, MdOutlinePayment, MdQuiz, MdVerifiedUser, RiUserSettingsFill } from "react-icons/md";
+import { RiSecurePaymentFill } from "react-icons/ri";
+import { MdDashboardCustomize, MdOutlinePayment, MdQuiz, MdRateReview, MdVerifiedUser, RiUserSettingsFill } from "react-icons/md";
 import { FaUsersCog } from "react-icons/fa";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -145,22 +144,7 @@ const Dashboard = () => {
                 </Link>
               </li>
             )}
-            {role !== "admin" &&
-              <li>
-              <Link
-                className={` shadow-lg my-1 font-bold ${
-                    1<0
-                    ? "bg-teal-400 hover:bg-teal-600 hover:text-gray-300 text-gray-600 "
-                    : " text-gray-200 hover:bg-teal-600"
-                }`}
-                to={"/dashboard/addReview"}
-              >
-                <img className="w-4" src={reviewSvg} alt="book svg" /> Add a
-                Review
-              </Link>
-            </li>
-            }
-            {role !== "admin" &&
+            {/* {role !== "admin" &&
               <li>
               <Link
                 className={` shadow-lg my-1 font-bold ${
@@ -174,7 +158,7 @@ const Dashboard = () => {
                 Quizzes
               </Link>
             </li>
-            }
+            } */}
             {role !== "admin" &&
               <li>
               <Link
@@ -185,8 +169,23 @@ const Dashboard = () => {
                 }`}
                 to={"/dashboard/myPayments"}
               >
-                <img className="w-4" src={reviewSvg} alt="book svg" /> My
+                <RiSecurePaymentFill /> My
                 Payments
+              </Link>
+            </li>
+            }
+            {role !== "admin" &&
+              <li>
+              <Link
+                className={` shadow-lg my-1 font-bold ${
+                    1<0
+                    ? "bg-teal-400 hover:bg-teal-600 hover:text-gray-300 text-gray-600 "
+                    : " text-gray-200 hover:bg-teal-600"
+                }`}
+                to={"/dashboard/addReview"}
+              >
+                <MdRateReview></MdRateReview> Add a
+                Review
               </Link>
             </li>
             }

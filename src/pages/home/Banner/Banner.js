@@ -10,11 +10,11 @@ const Banner = () => {
 			>
 				<div className='lg:w-3/4 xl:w-7/12 relative z-10 h-100 lg:mt-16'>
 					<div>
-						<h1 className='text-white text-3xl sm:text-4xl font-bold leading-tight'>
-							Welcome To Quizzer We want you to be a Good Quizzer
+						<h1 className='text-white leading-9 text-3xl sm:text-4xl font-bold'>
+						Welcome to Quiz Master. Participate on the <span className='text-primary'>Game</span> of knowledge<span className=''>!</span>
 						</h1>
 						<p className='text-blue-100 md:text-lg leading-snug mt-2 sm:px-0 px-5 sm:mt-4'>
-							Expand Your General Knowledge Lorem ipsum dolor sit amet consectetur as adipisicing elit. Laborum debitis fuga rem mollitia recusandae aperiam beatae nisi ullam ipsa fugit alias maiores quidem commodi at, asperiores laboriosam rerum aspernatur.
+						Expand your general knowledge with quiz master. Quiz master provides a huge sets of free and paid quizzes to enrich yourself.
 						</p>
 						<a
 							href='/quizzes'

@@ -30,7 +30,7 @@ const TakeQuiz = () => {
     return <Loading />;
   }
   const { singleQuiz } = quiz;
-  const { allQTime } = singleQuiz;
+  const { allQTime,  } = singleQuiz;
   const { Countdown } = Statistic;
 
   const onChange = (checkedValues) => {
@@ -183,7 +183,10 @@ const TakeQuiz = () => {
       </div>
     </div>
   );
-
+  const wrongAns = questions[index]?.options?.find((opt) => opt.id.toString() == ans)
+  console.log(wrongAns?.option);
+  const rightAns = questions[index]?.options?.find((opt) => opt.id.toString() == questions[index]?.answer)
+  console.log(rightAns?.option);
   return (
     <div className="flex relative mx-width mx-auto justify-between">
       <div className="w-8/12 bg-p">
@@ -253,10 +256,10 @@ const TakeQuiz = () => {
           <span>
             <BsFillPatchQuestionFill className="text-primary inline-block mx-4 w-4 h-4" />
             Total Question:
-          </span>{" "}
+          </span>
           <span className="mx-4">{singleQuiz?.questions?.length}</span>
-          <span className="mx-4">{ans}</span>
-          <span className="mx-4">{questions[index]?.answer}</span>
+          {/* <span className="mx-4">{}</span>
+          <span className="mx-4">{}</span> */}
         </h1>
       </div>
     </div>

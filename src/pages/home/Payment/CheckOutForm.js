@@ -6,9 +6,12 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../../shared/Loading/Loading';
 import SmallLoading from '../../../shared/Loading/SmallLoading';
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const CheckOutForm = ({userData}) => {
   // console.log(userData);
+  const [user] = useAuthState(auth)
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState('');
@@ -77,13 +80,13 @@ const CheckOutForm = ({userData}) => {
     else{
       setCardError('')
       setTransactionId(paymentIntent.id)
-      console.log(paymentIntent);
       setSuccess(`Congrats! Your Payment is Completed.`)
 
       //store payment on db
       const paymentDetails = {
-        name: userData?.name,
+        name: user?.displayName,
         email: userData?.email,
+        refund: "false",
         transactionId: paymentIntent.id,
         amount: paymentIntent.amount,
       }
@@ -98,8 +101,7 @@ const CheckOutForm = ({userData}) => {
       .then(data => {
         setProcessing(false);
         toast.success('Congrats! Your Payment is Completed.');
-        navigate('/')
-        // console.log(data);
+        navigate('/dashboard/myPayments')
       })
     }
 

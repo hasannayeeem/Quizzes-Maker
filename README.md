@@ -4,4 +4,11 @@ to check first: clone this repo then run npm install then knock me on whatsapp f
 
 
 
+# Admin Credetial
+
+Email: testingaddmin@gmail.com
+Password: Abcc1233
+
+
+
 

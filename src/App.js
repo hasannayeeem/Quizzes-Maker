@@ -24,6 +24,8 @@ import TakeQuiz from "./pages/takeQuiz/TakeQuiz";
 import Footer from "./shared/Footer/Footer";
 import Navbar from "./shared/Header/Nabvar";
 import NotFound from "./shared/NotFound/NotFound";
+import MyPayments from "./pages/Dashboard/forUser/Payments/MyPayments";
+import AddReview from "./pages/Dashboard/forUser/AddReview/AddReview";
 
 function App() {
   return (
@@ -105,6 +107,22 @@ function App() {
               <RequireAdmin>
               <Payments />
               </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="addReview"
+            element={
+              <RequireAuth>
+              <AddReview />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="myPayments"
+            element={
+              <RequireAuth>
+              <MyPayments />
+              </RequireAuth>
             }
           ></Route>
         </Route>

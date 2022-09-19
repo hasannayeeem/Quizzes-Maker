@@ -31,7 +31,6 @@ const SignUp = () => {
 	let from = location.state?.from?.pathname || "/";
 	
     const handleRegister = async (data) => {
-        console.log(data);
         const email = data.email
         const password = data.password
         await createUserWithEmailAndPassword(email, password)

@@ -20,7 +20,7 @@ const Payments = () => {
                                 Email
                             </th>
                             <th scope='col' className='py-2 sm:py-3 text-center'>
-                                status
+                                date
                             </th>
                             <th scope='col' className='py-2 sm:py-3 text-center'>
                                 transaction ID
