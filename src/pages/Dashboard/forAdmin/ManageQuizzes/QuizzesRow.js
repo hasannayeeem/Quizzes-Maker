@@ -4,12 +4,51 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useUserData from "../../../../hooks/useUserData";
 import auth from '../../../../firebase.init';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const QuizzesRow = ({quiz, index}) => {
     const [user] = useAuthState(auth)
     const [userData]= useUserData(user);
     const {name, email} = userData;
     const {image, quizName, quizType, users, _id} = quiz;
+    const handleDelete = (id) => {
+      Swal
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        background: '#343a40',
+        color: 'yellow',
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete from quizzes!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(
+              `https://quizzes-maker.herokuapp.com/api/v1/delete-quiz/${id}`
+            )
+            .then((data) => {
+              Swal.fire(
+                "Deleted!",
+                `${quizName} has been Deleted from Quizzes.`,
+                "success"
+              );
+              // refetch()
+            })
+            .catch((error) => {
+              console.log(error.response.data);
+              if (error.response.status === 403) {
+                toast.error("You are Not Admin");
+              }
+            });
+        }
+      });
+    }
     return (
         <tr className="bg-gray-800 border-gray-700 odd:bg-gray-800 even:bg-gray-700">
       <th
@@ -38,7 +77,7 @@ const QuizzesRow = ({quiz, index}) => {
           Details
           
         </Link><FaTrashAlt
-            // onClick={() => handleDelete(_id)}
+            onClick={() => handleDelete(_id)}
             className="text-secondary ml-2 cursor-pointer"
           ></FaTrashAlt>
         </div>

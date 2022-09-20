@@ -116,7 +116,7 @@ const Navbar = () => {
 							href="/"
 							className="text-white ml-2 font-semibold  text-3xl"
 						>
-							{role === 'admin' ? 'Quizzes Master' : 'Quiz Master'}
+							{role === 'admin' ? 'Quizzes Maker' : 'Quiz Master'}
 						</a>
 					</div>
 
